@@ -27,7 +27,8 @@ CREATE TABLE ads (
 
 CREATE TABLE categories (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    name VARCHAR(240) NOT NULL
+    name VARCHAR(240) NOT NULL,
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE ad_category (
