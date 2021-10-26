@@ -19,6 +19,10 @@
                 <input id="password" name="password" class="form-control" type="password">
             </div>
             <input type="submit" class="btn btn-primary btn-block" value="Log In">
+			<br>
+			<div>
+				<a href="/register">Don't have an account? Register here!</a>
+			</div>
         </form>
     </div>
 </body>
