@@ -19,11 +19,12 @@
     <h2>
         What are you looking for?
     </h2>
+	<select>
+		<option value="all"></option>
    <c:forEach var = "category" items="${categories}">
-       <div class="col-md-4">
-           <a href="/ads/categories">${category.name}</a>
-       </div>
+	   <option value="${category.name}">${category.name}</option>
    </c:forEach>
+	</select>
 </div>
 </body>
 </html>
