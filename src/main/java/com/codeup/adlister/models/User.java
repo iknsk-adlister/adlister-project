@@ -7,6 +7,8 @@ public class User {
     private String username;
     private String email;
     private String password;
+    private long positiveRating;
+    private long negativeRating;
 
     public User() {}
 
@@ -21,6 +23,24 @@ public class User {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.positiveRating = 0;
+        this.negativeRating = 0;
+    }
+
+    public long getPositiveRating() {
+        return positiveRating;
+    }
+
+    public void setPositiveRating(long positiveRating) {
+        this.positiveRating = positiveRating;
+    }
+
+    public long getNegativeRating() {
+        return negativeRating;
+    }
+
+    public void setNegativeRating(long negativeRating) {
+        this.negativeRating = negativeRating;
     }
 
     public long getId() {
