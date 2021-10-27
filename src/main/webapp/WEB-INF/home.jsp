@@ -25,6 +25,20 @@
 	   <option value="${category.name}">${category.name}</option>
    </c:forEach>
 	</select>
-</div>
+	<div class="container">
+		<h1>Here Are all the ads!</h1>
+
+			<div class="card-deck mx-3">
+		<c:forEach var="ad" items="${ads}">
+					<div class="col-4 d-flex flex-row card" style="width: 18rem;">
+<%--						<img class="card-img-top" src="..." alt="Card image cap">--%>
+						<div class="card-body">
+							<h5 class="card-title">${ad.title}</h5>
+							<p class="card-text">${ad.description}</p>
+							<a href="#" class="btn btn-primary" style="background-color: blueviolet">Message Seller</a>
+					</div>
+				</div>
+		</c:forEach>
+			</div>
 </body>
 </html>

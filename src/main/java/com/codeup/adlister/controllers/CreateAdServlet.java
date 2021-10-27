@@ -34,11 +34,11 @@ public class CreateAdServlet extends HttpServlet {
 	    Category category = new Category(
 	    		request.getParameter("category")
 	    );
-        DaoFactory.getAdsDao().insert(ad);
-        DaoFactory.getCategoriesDao().insert(category);
+        long adId = DaoFactory.getAdsDao().insert(ad);
+        long categoryId = DaoFactory.getCategoriesDao().insert(category);
 	    AdCategory adCategory = new AdCategory(
-	    		ad.getId(),
-			    category.getId()
+	    		adId,
+			    categoryId
 	    );
 	    DaoFactory.getAdsCategoriesDao().insert(adCategory);
         response.sendRedirect("/ads");
