@@ -25,13 +25,11 @@ public class MySQLAdsCategoriesDao implements AdsCategories{
 	public void insert(AdCategory adCategory) {
 		try {
 			String insertQuery = "INSERT INTO ad_category(ad_id, category_id) VALUES (?, ?)";
-			PreparedStatement stmt = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement stmt = connection.prepareStatement(insertQuery);
 			stmt.setLong(1, adCategory.getAdId());
 			stmt.setLong(2, adCategory.getCategoryId());
-			stmt.executeUpdate();
-//			ResultSet rs = stmt.getGeneratedKeys();
-//			rs.next();
-//			return rs.getLong(1);
+			stmt.executeQuery();
+
 		} catch (SQLException e) {
 			throw new RuntimeException("Error creating a new ad.", e);
 		}
