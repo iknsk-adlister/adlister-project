@@ -8,7 +8,7 @@ public class DaoFactory {
     private static Users usersDao;
     private static Categories categoriesDao;
     private static AdsCategories adsCategoriesDao;
-    private static Config config = new Config();
+    private static final Config config = new Config();
 
     public static Ads getAdsDao() {
         if (adsDao == null) {
