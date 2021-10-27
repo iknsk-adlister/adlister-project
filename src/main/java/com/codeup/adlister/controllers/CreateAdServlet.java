@@ -41,6 +41,6 @@ public class CreateAdServlet extends HttpServlet {
 			    categoryId
 	    );
 	    DaoFactory.getAdsCategoriesDao().insert(adCategory);
-        response.sendRedirect("/ads");
+        response.sendRedirect("/home");
     }
 }
