@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -19,7 +20,18 @@
                 <input id="password" name="password" class="form-control" type="password">
             </div>
             <input type="submit" class="btn btn-primary btn-block" value="Log In">
+			<br>
+			<div>
+				<a href="/register">Don't have an account? Register here!</a>
+			</div>
         </form>
+        <c:choose>
+            <c:when test = "${invalidLogin}" >
+                <p>
+                    Invalid Login chad >;)
+                </p>
+            </c:when>
+        </c:choose>
     </div>
 </body>
 </html>

@@ -12,11 +12,18 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(name = "controllers.LoginServlet", urlPatterns = "/login")
+
 public class LoginServlet extends HttpServlet {
+    private int counter = 0; 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getSession().getAttribute("user") != null) {
             response.sendRedirect("/profile");
             return;
+        }
+          //if it runs that 1 It's
+        counter += 1;
+        if(counter > 1)  {
+            request.setAttribute("invalidLogin", true);
         }
         request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
     }
