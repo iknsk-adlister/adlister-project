@@ -1,6 +1,7 @@
 package com.codeup.adlister.dao;
 
 import com.codeup.adlister.models.Category;
+import com.codeup.adlister.models.User;
 import com.mysql.cj.jdbc.Driver;
 
 import java.sql.*;
@@ -20,6 +21,17 @@ public class MySQLCategoriesDao implements Categories {
 			);
 		} catch (SQLException e) {
 			throw new RuntimeException("Error connecting to the database!", e);
+		}
+	}
+	@Override
+	public Category findCategory(Category category) {
+		String query = "SELECT * FROM categories WHERE name = ? LIMIT 1";
+		try {
+			PreparedStatement stmt = connection.prepareStatement(query);
+			stmt.setString(1, category.getName());
+			return extractCategory(stmt.executeQuery());
+		} catch (SQLException e) {
+			throw new RuntimeException("Error finding a user by username", e);
 		}
 	}
 
@@ -51,6 +63,9 @@ public class MySQLCategoriesDao implements Categories {
 	}
 
 	private Category extractCategory(ResultSet rs) throws SQLException {
+		if (! rs.next()) {
+			return null;
+		}
 		return new Category(
 				rs.getLong("id"),
 				rs.getString("name")
