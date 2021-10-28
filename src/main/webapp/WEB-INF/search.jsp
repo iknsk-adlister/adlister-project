@@ -9,12 +9,14 @@
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
-<div class="input-group mb-3 mt-5 px-3 input-group-large">
-    <input type="text" class="form-control" placeholder="What would you like to find?" name="searchBar" aria-label="SearchBar" aria-describedby="basic-addon2">
-    <div class="input-group-append">
-        <a href="/search" class="btn btn-primary">Search</a>
+<form action="/search" method="POST">
+    <div class="input-group mb-3 mt-5 px-3 input-group-large">
+        <input type="text" class="form-control" placeholder="What would you like to find?" name="searchBar" aria-label="SearchBar" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
     </div>
-</div>
+</form>
 
 <br>
 
