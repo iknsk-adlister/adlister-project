@@ -28,10 +28,9 @@ public class MySQLAdsCategoriesDao implements AdsCategories{
 			PreparedStatement stmt = connection.prepareStatement(insertQuery);
 			stmt.setLong(1, adCategory.getAdId());
 			stmt.setLong(2, adCategory.getCategoryId());
-			stmt.executeQuery();
-
+			stmt.executeUpdate();
 		} catch (SQLException e) {
-			throw new RuntimeException("Error creating a new ad.", e);
+			throw new RuntimeException("Error adding to ad_category.", e);
 		}
 	}
 }
