@@ -71,12 +71,14 @@ public class MySQLAdsDao implements Ads {
     }
 
     @Override
-    public Ad findByTitle(String ad) {
-        String query = "SELECT * FROM ads WHERE title = ?";
+    public List<Ad> findByTitle(String ad) {
+        String query = "SELECT * FROM ads WHERE title LIKE ?";
+        String wildCardSearch = "%" + ad + "%";
         try {
             PreparedStatement stmt = connection.prepareStatement(query);
-            stmt.setString(1, ad);
-            return extractAd(stmt.executeQuery());
+            stmt.setString(1, wildCardSearch);
+            ResultSet rs = stmt.executeQuery();
+            return createAdsFromResults(rs);
         } catch (SQLException e) {
             throw new RuntimeException("Error finding an ad by title", e);
         }
