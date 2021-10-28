@@ -11,18 +11,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
-@WebServlet("/welcome")
-public class WelcomeServlet extends HttpServlet {
+@WebServlet("/search")
+public class SearchServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("welcome.jsp").forward(request, response);
-    }
+        String userInput = (String) request.getSession().getAttribute("homeSearch");
+        request.setAttribute("ads", DaoFactory.getAdsDao().findByTitle(userInput));
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String userInput = request.getParameter("homeInput");
-        request.getSession().setAttribute("homeSearch", userInput);
-        response.sendRedirect("/search");
+        request.getRequestDispatcher("/WEB-INF/search.jsp").forward(request, response);
     }
 }

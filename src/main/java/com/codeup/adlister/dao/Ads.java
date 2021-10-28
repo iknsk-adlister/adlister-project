@@ -10,5 +10,5 @@ public interface Ads {
     // insert a new ad and return the new ad's id
     Long insert(Ad ad);
     // find an ad by title
-    Ad findByTitle(String adTitle);
+    List<Ad> findByTitle(String adTitle);
 }
