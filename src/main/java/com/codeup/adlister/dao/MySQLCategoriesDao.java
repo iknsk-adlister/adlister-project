@@ -24,11 +24,11 @@ public class MySQLCategoriesDao implements Categories {
 		}
 	}
 	@Override
-	public Category findCategory(Category category) {
+	public Category findCategory(String category) {
 		String query = "SELECT * FROM categories WHERE name = ? LIMIT 1";
 		try {
 			PreparedStatement stmt = connection.prepareStatement(query);
-			stmt.setString(1, category.getName());
+			stmt.setString(1, category);
 			return extractCategory(stmt.executeQuery());
 		} catch (SQLException e) {
 			throw new RuntimeException("Error finding a user by username", e);

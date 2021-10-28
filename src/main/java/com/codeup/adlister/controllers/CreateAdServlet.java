@@ -31,13 +31,15 @@ public class CreateAdServlet extends HttpServlet {
             request.getParameter("title"),
             request.getParameter("description")
         );
-	    Category category = new Category(
-	    		request.getParameter("category")
-	    );
+      
+	    Category category = DaoFactory.getCategoriesDao().findCategory(request.getParameter("category"));
 	    long categoryId;
-	    if(DaoFactory.getCategoriesDao().findCategory(category) != null){
+	    if(DaoFactory.getCategoriesDao().findCategory(request.getParameter("category")) != null){
 	    	categoryId = category.getId();
 	    } else {
+	    	category = new Category(
+	    			request.getParameter("category")
+		    );
 		   categoryId = DaoFactory.getCategoriesDao().insert(category);
 	    }
         long adId = DaoFactory.getAdsDao().insert(ad);
