@@ -1,6 +1,7 @@
 package com.codeup.adlister.dao;
 
 import com.codeup.adlister.models.Ad;
+import com.codeup.adlister.models.User;
 import com.mysql.cj.jdbc.Driver;
 
 import java.sql.*;
@@ -67,5 +68,17 @@ public class MySQLAdsDao implements Ads {
             ads.add(extractAd(rs));
         }
         return ads;
+    }
+
+    @Override
+    public Ad findByTitle(String ad) {
+        String query = "SELECT * FROM ads WHERE title = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, ad);
+            return extractAd(stmt.executeQuery());
+        } catch (SQLException e) {
+            throw new RuntimeException("Error finding an ad by title", e);
+        }
     }
 }
