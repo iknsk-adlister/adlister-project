@@ -31,6 +31,7 @@ public class CreateAdServlet extends HttpServlet {
             request.getParameter("title"),
             request.getParameter("description")
         );
+      
 	    Category category = DaoFactory.getCategoriesDao().findCategory(request.getParameter("category"));
 	    long categoryId;
 	    if(DaoFactory.getCategoriesDao().findCategory(request.getParameter("category")) != null){

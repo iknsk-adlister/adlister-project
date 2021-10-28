@@ -6,7 +6,8 @@ import java.util.List;
 public interface Categories {
 	Long insert(Category category);
 
-	Category findCategory(String category);
+Category findCategory(String category);
+
 
 	List<Category> all();
 }
