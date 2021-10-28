@@ -22,4 +22,11 @@ public class SearchServlet extends HttpServlet {
 
         request.getRequestDispatcher("/WEB-INF/search.jsp").forward(request, response);
     }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("ads", DaoFactory.getAdsDao().findByTitle(request.getParameter("searchBar")));
+
+        request.getRequestDispatcher("/WEB-INF/search.jsp").forward(request, response);
+    }
 }
