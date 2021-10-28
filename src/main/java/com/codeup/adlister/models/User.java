@@ -1,7 +1,7 @@
 package com.codeup.adlister.models;
 
 import com.codeup.adlister.util.Password;
-
+ // this is your constructor for a user and is being called when you create a new user
 public class User {
     private long id;
     private String username;
@@ -11,11 +11,13 @@ public class User {
     private long negativeRating;
 
     public User() {}
-
+    //constructor for a user
     public User(String username, String email, String password) {
         this.username = username;
         this.email = email;
         setPassword(password);
+        this.positiveRating = 0;
+        this.negativeRating = 0;
     }
 
     public User(long id, String username, String email, String password) {

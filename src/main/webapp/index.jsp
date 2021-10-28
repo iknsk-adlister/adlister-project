@@ -8,12 +8,6 @@
 </head>
 <body>
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
-
-    <div class="container">
-        <h1>Welcome!</h1>
-    </div>
-
     <% response.sendRedirect("/welcome"); %>
-
 </body>
 </html>

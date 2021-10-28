@@ -81,4 +81,17 @@ public class MySQLAdsDao implements Ads {
             throw new RuntimeException("Error finding an ad by title", e);
         }
     }
+
+
+    public void delete(long id) {
+        String insertQuery = "DELETE FROM ads WHERE id = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(insertQuery);
+            stmt.setLong(1, id);
+            stmt.execute();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error finding ad with that ID", e);
+        }
+
+    }
 }
