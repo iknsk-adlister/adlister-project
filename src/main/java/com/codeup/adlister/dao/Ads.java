@@ -12,5 +12,7 @@ public interface Ads {
     // find an ad by title
     List<Ad> findByTitle(String adTitle);
 
+    List<Ad> findAdByCategory(String category);
+
     void delete(long id);
 }

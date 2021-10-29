@@ -96,4 +96,17 @@ public class MySQLAdsDao implements Ads {
         }
 
     }
+
+    @Override
+    public List<Ad> findAdByCategory(String category){
+    	String searchQuery = "SELECT * FROM ads JOIN ad_category ac ON ads.id = ac.ad_id JOIN categories c ON c.id = ac.category_id WHERE c.name = ?";
+    	try{
+    		PreparedStatement stmt = connection.prepareStatement(searchQuery);
+    		stmt.setString(1, category);
+		    ResultSet rs = stmt.executeQuery();
+		    return createAdsFromResults(rs);
+	    } catch (SQLException throwables) {
+		    throw new RuntimeException("Error searching by category.", throwables);
+	    }
+    }
 }

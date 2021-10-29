@@ -19,16 +19,15 @@
     <h2>
         What are you looking for?
     </h2>
-	<select>
-		<option value="all"></option>
-   <c:forEach var = "category" items="${categories}">
-	   <option value="${category.name}">${category.name}</option>
-   </c:forEach>
-	</select>
+	<form method="post" action="/home">
+	<label for="category-search">Search for a category here:</label>
+	<input id="category-search" type="text" name="category-search">
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+
 	<div class="container">
 		<h1>Here Are all the ads!</h1>
-
-			<div class="card-deck mx-3">
+			<div class="row">
 		<c:forEach var="ad" items="${ads}">
 					<div class="col-4 d-flex flex-row card" style="width: 18rem;">
 <%--						<img class="card-img-top" src="..." alt="Card image cap">--%>
