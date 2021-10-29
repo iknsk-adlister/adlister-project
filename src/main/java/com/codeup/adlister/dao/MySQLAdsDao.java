@@ -37,6 +37,21 @@ public class MySQLAdsDao implements Ads {
     }
 
     @Override
+    public void editAd(String title, String description, String id) {
+        try {
+            //update the ads and then set the title & description to what the user inputs but the id stays the same
+            String updateQuery = "UPDATE ads SET title = ?, description = ? WHERE id = ?";
+            PreparedStatement stmt = connection.prepareStatement(updateQuery, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, title);
+            stmt.setString(2, description);
+            stmt.setString(3, String.valueOf(Integer.parseInt(id)));
+            stmt.executeUpdate();
+        } catch (SQLException e){
+            throw new RuntimeException("Error editing ad.", e);
+         }
+    }
+
+    @Override
     public Long insert(Ad ad) {
         try {
             String insertQuery = "INSERT INTO ads(user_id, title, description) VALUES (?, ?, ?)";
