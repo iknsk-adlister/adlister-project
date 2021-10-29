@@ -10,13 +10,13 @@
     if(user != null) {
      request.setAttribute("navbar", "<a href=\"/welcome\">Home</a>"+
              "<li><a href=\"/profile\">Home</a></li>"+
-             "<li><a href=\"/ads/search\">Search</a></li>"+
+             "<li><a href=\"/ads/homeSearch\">Search</a></li>"+
              "<li><a href=\"/ads/create\">Create Ads</a></li>"+
              "<li><a href=\"/logout\">Logout\"</a></li>");
     } else {
-        request.setAttribute("navbar", "<li><a href=\"/welcome\">Adlister</a>" +
+        request.setAttribute("navbar", "<li><a href=\"/welcome\">Welcome!</a>" +
                 "<li><a href=\"/login\">Log In</a></li>" +
-                "<li><a href=\"/search\">Search</a></li>" +
+                "<li><a href=\"/homeSearch\">Search</a></li>" +
                 "<li><a href=\"/ads/create\">Create Ads</a></li>");
     }
   %>
@@ -30,7 +30,7 @@
         </div>
         <ul class="navbar-nav">
             <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
-            <li class="nav-item"><a class="nav-link" href="/search">Search</a></li>
+            <li class="nav-item"><a class="nav-link" href="/homeSearch">Search</a></li>
             <li class="nav-item"><a class="nav-link" href="/ads/create">Create Ads</a></li>
             <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
         </ul>
