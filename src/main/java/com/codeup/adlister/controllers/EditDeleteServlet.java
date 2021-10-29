@@ -17,6 +17,6 @@ public class EditDeleteServlet extends HttpServlet {
     if (title != null || description != null)
         DaoFactory.getAdsDao().editAd(title, description, id);
     }
-    if (delete != null)
-        DaoFactory.getAdsDao().editAd()
+//    if (delete != null)
+//        DaoFactory.getAdsDao().editAd()
 }

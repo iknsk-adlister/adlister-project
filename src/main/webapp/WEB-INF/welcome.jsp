@@ -38,7 +38,7 @@
             <h5 class="card-title">Search</h5>
             <div class="form-group">
                 <form action="/welcome" method="POST">
-                    <input type="text" class="form-control input-lg mt-4 mb-3" placeholder="Search for an Ad, User, or Category" name="homeInput">
+                    <input type="text" class="form-control input-lg mt-4 mb-3" placeholder="Search for an Ad" name="homeInput">
                     <br>
                     <button type="submit" class="btn btn-primary">Search</button>
                 </form>
