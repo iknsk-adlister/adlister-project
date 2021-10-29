@@ -36,7 +36,8 @@
 							<h5 class="card-title">${ad.title}</h5>
 							<p class="card-text">${ad.description}</p>
 							<a href="#" class="btn btn-primary" style="background-color: blueviolet">Message Seller</a>
-					</div>
+							<a href="#" class="btn btn-primary" style="background-color: blueviolet">Edit</a>
+						</div>
 				</div>
 		</c:forEach>
 			</div>
