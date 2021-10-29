@@ -15,6 +15,8 @@ public interface Ads {
 
     List<Ad> findAdByCategory(String category);
 
+    Ad findAdById(long id);
+
     void delete(long id);
 }
 
