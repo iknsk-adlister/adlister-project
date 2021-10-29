@@ -6,6 +6,11 @@
         <jsp:param name="title" value="Please Log In" />
     </jsp:include>
 </head>
+<% String invalidLoginMessage = (String) session.getAttribute("invalidLoginMessage");
+  if (null !=invalidLoginMessage) {%>
+<h4> <%=invalidLoginMessage %></h4>
+<%}
+%>
 <body>
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
     <div class="container">
@@ -28,10 +33,11 @@
         <c:choose>
             <c:when test = "${invalidLogin}" >
                 <p>
-                    Invalid Login chad >;)
+                    Invalid Login!!!
                 </p>
             </c:when>
         </c:choose>
     </div>
+
 </body>
 </html>

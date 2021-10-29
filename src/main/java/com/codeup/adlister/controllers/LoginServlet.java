@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(name = "controllers.LoginServlet", urlPatterns = "/login")
@@ -33,18 +34,29 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
         User user = DaoFactory.getUsersDao().findByUsername(username);
 
-        if (user == null) {
-            response.sendRedirect("/login");
-            return;
+        if (username!=null && username!=" " || password!=null && password!=" ") {
+            HttpSession session = request.getSession(true);
+            session.setAttribute("username", username);
+            session.setAttribute("password", password);
+           // response.getWriter().append("Sucessful Login!");
+        } else{
+            response.sendRedirect("login.jsp"); //error
+            HttpSession session=request.getSession(true);
+            session.setAttribute("invalidLogin", "Invalid Login ");
+            response.sendRedirect("/login");//original
+            return; //original
         }
 
-        boolean validAttempt = Password.check(password, user.getPassword());
+      
+        //original code
+      boolean validAttempt = Password.check(password, user.getPassword());
 
-        if (validAttempt) {
-            request.getSession().setAttribute("user", user);
-            response.sendRedirect("/profile");
-        } else {
-            response.sendRedirect("/login");
-        }
+      if (validAttempt) {
+          request.getSession().setAttribute("user", user);
+          response.sendRedirect("/profile");
+      } else {
+          response.sendRedirect("/login");
+      }
+
     }
 }

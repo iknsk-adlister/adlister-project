@@ -11,8 +11,8 @@
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
     <div class="container">
-        <h1>Welcome, ${sessionScope.user.username}!</h1>
-
+        <h1>Welcome, ${sessionScope.username}!</h1>
+                       <%--essionScope.user.username --%>
     </div>
 
     <div class="container">
