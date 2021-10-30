@@ -35,7 +35,7 @@
 							<h5 class="card-title">${ad.title}</h5>
 							<p class="card-text">${ad.description}</p>
 							<a href="#" class="btn btn-primary" style="background-color: blueviolet">Message Seller</a>
-							<a href="#" class="btn btn-primary" style="background-color: blueviolet">Edit</a>
+							<a href="${pageContext.request.contextPath}/ads/editads?ad_id=${ad.id}" class="btn btn-primary" style="background-color: blueviolet">Edit</a>
 						</div>
 				</div>
 		</c:forEach>

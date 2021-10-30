@@ -113,6 +113,37 @@ public class MySQLAdsDao implements Ads {
     }
 
     @Override
+    public Ad findById(long id) {
+        try {
+            String query = "SELECT * FROM ads WHERE id = ? LIMIT 1";
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, String.valueOf(id));
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return extractAd(rs);
+            }
+            return null;
+        } catch (SQLException e) {
+            throw new RuntimeException("Error finding a Ad by Id", e);
+        }
+    }
+
+    @Override
+    public void edit(Ad ad) {
+        String query = "update ads set title = ?, description = ? where id = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, ad.getTitle());
+            stmt.setString(2, ad.getDescription());
+            stmt.setLong(3, ad.getId());
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error updating ad", e);
+        }
+    }
+
+    @Override
     public List<Ad> findAdByCategory(String category){
     	String searchQuery = "SELECT * FROM ads JOIN ad_category ac ON ads.id = ac.ad_id JOIN categories c ON c.id = ac.category_id WHERE c.name = ?";
     	try{
@@ -124,4 +155,35 @@ public class MySQLAdsDao implements Ads {
 		    throw new RuntimeException("Error searching by category.", throwables);
 	    }
     }
+
+    @Override
+    public List<Ad> getByUserId(Long id) {
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement("SELECT * FROM ads where user_id = ?");
+            stmt.setLong(1, id);
+            ResultSet rs = stmt.executeQuery();
+            return createAdsFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving all ads.", e);
+        }
+    }
+
+    @Override
+    public Long findUserId(long id) {
+        try {
+            String query = "SELECT user_id FROM ads WHERE id = ? LIMIT 1";
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, String.valueOf(id));
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getLong("user_id");
+            }
+            return null;
+        } catch (SQLException e) {
+            throw new RuntimeException("Error finding a Ad by Id", e);
+        }
+    }
+
+
 }
