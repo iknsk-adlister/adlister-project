@@ -32,8 +32,14 @@
 					<div class="col-4 d-flex flex-row card" style="width: 18rem;">
 						<div class="card-body">
 							<h5 class="card-title">${ad.title}</h5>
+<<<<<<< HEAD
+							<p class="card-text">${ad.description}</p>
+							<a href="#" class="btn btn-primary" style="background-color: blueviolet">Message Seller</a>
+							<a href="${pageContext.request.contextPath}/ads/editads?ad_id=${ad.id}" class="btn btn-primary" style="background-color: blueviolet">Edit</a>
+=======
 							<a  href="/details?adId=${ad.id}" class="btn btn-primary" style="background-color: blueviolet">Details</a>
 							<a href="#" class="btn btn-primary" style="background-color: blueviolet">Edit</a>
+>>>>>>> main
 						</div>
 				</div>
 		</c:forEach>

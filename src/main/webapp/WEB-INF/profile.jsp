@@ -12,23 +12,27 @@
 
     <div class="container">
         <h1>Welcome, ${sessionScope.username}!</h1>
-                       <%--essionScope.user.username --%>
     </div>
 
     <div class="container">
 
         <div class="col-6">
             <h2>Your ads:</h2>
-            <c:forEach var="ad" items="${ads}">
-                <div class="card">
-                    <div class="card-body">
-                        <h3 class="card-title">${ad.title}</h3>
-                        <p>${ad.description}</p>
-                        <a href="#">${ad.categories}</a>
-                        <button>Delete</button>
+            <div class="display-cards margin-auto">
+                <c:forEach var="ad" items="${ads}">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title">${ad.title}</h3>
+                            <p>${ad.description}</p>
+                            <a href="#">${ads.categories}</a>
+                            <a href="${pageContext.request.contextPath}/ads/editads?ad_id=${ad.id}" class="btn btn-primary" style="background-color: blueviolet">Edit</a>
+                            <a href="${pageContext.request.contextPath}/ads/delete?ad_id=${ad.id}"
+                               onclick="return confirm('Are you sure you want to delete this ad?')"
+                               class="btn">Delete</a>
+                        </div>
                     </div>
-                </div>
-            </c:forEach>
+                </c:forEach>
+            </div>
         </div>
 
 <%--        bonus ? more complex feature--%>
