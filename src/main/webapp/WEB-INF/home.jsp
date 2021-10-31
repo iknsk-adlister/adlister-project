@@ -22,7 +22,7 @@
 	<form method="post" action="/home">
 	<label for="category-search">Search for a category here:</label>
 	<input id="category-search" type="text" name="category-search">
-		<button type="submit" class="btn btn-primary">Submit</button>
+		<button name="category-btn" type="submit" class="btn btn-primary">Submit</button>
 	</form>
 
 	<div class="container">
@@ -30,12 +30,16 @@
 			<div class="row">
 		<c:forEach var="ad" items="${ads}">
 					<div class="col-4 d-flex flex-row card" style="width: 18rem;">
-<%--						<img class="card-img-top" src="..." alt="Card image cap">--%>
 						<div class="card-body">
 							<h5 class="card-title">${ad.title}</h5>
+<<<<<<< HEAD
 							<p class="card-text">${ad.description}</p>
 							<a href="#" class="btn btn-primary" style="background-color: blueviolet">Message Seller</a>
 							<a href="${pageContext.request.contextPath}/ads/editads?ad_id=${ad.id}" class="btn btn-primary" style="background-color: blueviolet">Edit</a>
+=======
+							<a  href="/details?adId=${ad.id}" class="btn btn-primary" style="background-color: blueviolet">Details</a>
+							<a href="#" class="btn btn-primary" style="background-color: blueviolet">Edit</a>
+>>>>>>> main
 						</div>
 				</div>
 		</c:forEach>
