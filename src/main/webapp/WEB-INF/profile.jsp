@@ -18,14 +18,14 @@
 
         <div class="col-6">
             <h2>Your ads:</h2>
-            <div class="display-cards margin-auto">
+            <div class="display-flex flex-wrap-wrap justify-content-center align-items-center">
                 <c:forEach var="ad" items="${ads}">
                     <div class="card">
                         <div class="card-body">
                             <h3 class="card-title">${ad.title}</h3>
                             <p>${ad.description}</p>
-                            <a href="#">${ads.categories}</a>
-                            <a href="${pageContext.request.contextPath}/ads/editads?ad_id=${ad.id}" class="btn btn-primary" style="background-color: blueviolet">Edit</a>
+<%--                            <a href="#">${ads.categories}</a>--%>
+                            <a href="${pageContext.request.contextPath}/ads/edit?ad_id=${ad.id}" class="btn btn-primary" style="background-color: blueviolet">Edit</a>
                             <a href="${pageContext.request.contextPath}/ads/delete?ad_id=${ad.id}"
                                onclick="return confirm('Are you sure you want to delete this ad?')"
                                class="btn">Delete</a>
