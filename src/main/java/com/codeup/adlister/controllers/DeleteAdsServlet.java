@@ -15,7 +15,7 @@ public class DeleteAdsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-        long id = Long.parseLong(req.getParameter("ad_id"));
+        long id = Long.parseLong(req.getParameter("id"));
         DaoFactory.getAdsDao().delete(id);
         res.sendRedirect("/profile");
 

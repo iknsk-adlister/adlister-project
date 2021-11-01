@@ -18,13 +18,13 @@
 
         <form action="/ads/editads" method="post">
             <div class="form-group">
-                <label for="editTitle">Title</label>
-                <input id="editTitle" name="editTitle" class="form-control" type="text" value="${title}">
-                <input type="hidden" name="ad_id" value="${ad_id}">
+                <label for="title">Title</label>
+                <input id="title" name="title" class="form-control" type="text" value="${title}">
+                <input type="hidden" name="id" value="${id}">
             </div>
             <div class="form-group">
-                <label for="editDescription">Description</label>
-                <textarea id="editDescription" name="editDescription" class="form-control" type="text">${description}</textarea>
+                <label for="description">Description</label>
+                <textarea id="description" name="description" class="form-control" type="text">${description}</textarea>
             </div>
             <input type="submit" class="btn btn-block">
         </form>

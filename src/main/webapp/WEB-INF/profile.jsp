@@ -13,7 +13,7 @@
     <div class="container">
         <h1>Welcome, ${sessionScope.username}!</h1>
     </div>
-
+    <a href="${pageContext.request.contextPath}/editProfile?" class="btn btn-primary" style="background-color: blueviolet">Update Profile</a>
     <div class="container">
 
         <div class="col-6">
@@ -25,8 +25,8 @@
                             <h3 class="card-title">${ad.title}</h3>
                             <p>${ad.description}</p>
 <%--                            <a href="#">${ads.categories}</a>--%>
-                            <a href="${pageContext.request.contextPath}/ads/edit?ad_id=${ad.id}" class="btn btn-primary" style="background-color: blueviolet">Edit</a>
-                            <a href="${pageContext.request.contextPath}/ads/delete?ad_id=${ad.id}"
+                            <a href="${pageContext.request.contextPath}/ads/editads?id=${ad.id}" class="btn btn-primary" style="background-color: blueviolet">Edit</a>
+                            <a href="${pageContext.request.contextPath}/ads/delete?id=${ad.id}"
                                onclick="return confirm('Are you sure you want to delete this ad?')"
                                class="btn">Delete</a>
                         </div>
@@ -35,22 +35,6 @@
             </div>
         </div>
 
-<%--        bonus ? more complex feature--%>
-<%--        <div class="col-6">--%>
-<%--            <h2>Messages</h2>--%>
-<%--            <c:forEach var="message" items="messages">--%>
-<%--                <div class="card">--%>
-<%--                    <div class="card-body">--%>
-<%--                        <h5 class="card-title">${message.user}</h5>--%>
-<%--                        <p>${message.description}</p>--%>
-<%--                        <a href="#"></a>--%>
-<%--                    </div>--%>
-
-<%--                </div>--%>
-
-<%--            </c:forEach>--%>
-
-<%--        </div>--%>
 
     </div>
 

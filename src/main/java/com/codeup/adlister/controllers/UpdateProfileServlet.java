@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "UpdateProfileServlet", value = "/user/update")
+@WebServlet(name = "UpdateProfileServlet", urlPatterns = {"/user/update", "/editProfile"})
 public class UpdateProfileServlet extends HttpServlet {
 
     @Override
@@ -26,7 +26,7 @@ public class UpdateProfileServlet extends HttpServlet {
         request.setAttribute("email", user.getEmail());
         request.setAttribute("username", user.getUsername());
 
-        request.getRequestDispatcher("/WEB-INF/users/update.jsp")
+        request.getRequestDispatcher("/WEB-INF/editProfile.jsp")
                 .forward(request, response);
     }
 

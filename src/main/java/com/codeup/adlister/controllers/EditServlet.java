@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name="EditDeleteServlet", urlPatterns = "/ads/edit")
+@WebServlet(name="EditDeleteServlet", urlPatterns = "/ads/editads")
 public class EditServlet extends HttpServlet {
 
     @Override
@@ -22,10 +22,10 @@ public class EditServlet extends HttpServlet {
         }
 
 
-        long ad_id = Long.parseLong(request.getParameter("ad_id"));
-        Ad ad = DaoFactory.getAdsDao().findById(ad_id);
+        long id = Long.parseLong(request.getParameter("id"));
+        Ad ad = DaoFactory.getAdsDao().findById(id);
 
-        request.setAttribute("ad_id", request.getParameter("ad_id"));
+        request.setAttribute("id", request.getParameter("id"));
         request.setAttribute("title", ad.getTitle());
         request.setAttribute("description", ad.getDescription());
         request.getRequestDispatcher("/WEB-INF/ads/editads.jsp").forward(request, response);
@@ -34,22 +34,22 @@ public class EditServlet extends HttpServlet {
 
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        long id = Long.parseLong(request.getParameter("ad_id"));
-        String title = request.getParameter("editTitle");
-        String description = request.getParameter("editDescription");
+        long id = Long.parseLong(request.getParameter("id"));
+        String title = request.getParameter("title");
+        String description = request.getParameter("description");
 
         if (title == null || title.isEmpty()) {
-            response.sendRedirect("/ads/editads?ad_id=" + id + "&errorMessage=TitleNull");
+            response.sendRedirect("/ads/editads?id=" + id + "&errorMessage=TitleNull");
             return;
         }
         if (description == null || description.isEmpty()) {
-            response.sendRedirect("/ads/editads?ad_id=" + id + "&errorMessage=DescriptionNull");
+            response.sendRedirect("/ads/editads?id=" + id + "&errorMessage=DescriptionNull");
             return;
         }
 
         User user = (User) request.getSession().getAttribute("user");
         Ad ad = new Ad(id, user.getId(), title, description);
         DaoFactory.getAdsDao().edit(ad);
-        response.sendRedirect("/profile");
+        response.sendRedirect("/home");
     }
 }
