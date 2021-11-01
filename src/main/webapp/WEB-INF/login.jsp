@@ -31,13 +31,13 @@
 				<a href="/register">Don't have an account? Register here!</a>
 			</div>
         </form>
-        <c:choose>
-            <c:when test = "${invalidLogin}" >
-                <p>
-                    Invalid Login!!!
-                </p>
-            </c:when>
-        </c:choose>
+<%--        <c:choose>--%>
+<%--            <c:when test = "${invalidLogin}" >--%>
+<%--                <p>--%>
+<%--                    Invalid Login!!!--%>
+<%--                </p>--%>
+<%--            </c:when>--%>
+<%--        </c:choose>--%>
     </div>
 
 </body>

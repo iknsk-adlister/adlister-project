@@ -10,7 +10,7 @@
 <jsp:include page="/WEB-INF/partials/navbar.jsp"/>
 
 <div>
-    <a class="back-button" href="/profile">Back to Profile</a>
+    <a class="back-button btn-primary" href="/profile">Back to Profile</a>
 </div>
 
 <div class="container">
@@ -25,7 +25,7 @@
             <label for="email">Email</label>
             <textarea id="email" name="email" class="form-control" type="text">${user.email}</textarea>
         </div>
-        <input type="submit" class="btn btn-block">
+        <input type="submit" class="btn btn-block btn-primary">
     </form>
 
 

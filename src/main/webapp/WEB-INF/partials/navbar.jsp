@@ -6,7 +6,7 @@
             <a class="navbar-brand" href="/welcome">Welcome!</a>
         </div>
         <ul class="navbar-nav">
-            <li class="nav-item"><a class="nav-link" href="/homeSearch">Search</a></li>
+            <li class="nav-item"><a class="nav-link" href="/search">Search</a></li>
             <li class="nav-item"><a class="nav-link" href="/ads/create">Create Ads</a></li>
             <%
                 if(session.getAttribute("user")== null) {

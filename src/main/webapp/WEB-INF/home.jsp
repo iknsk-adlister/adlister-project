@@ -38,7 +38,7 @@
 							<a  href="/details?adId=${ad.id}" class="btn btn-primary" style="background-color: blueviolet">Details</a>
 							<a href="${pageContext.request.contextPath}/ads/delete?id=${ad.id}"
 							   onclick="return confirm('Are you sure you want to delete this ad?')"
-							   class="btn">Delete</a>
+							   class="btn btn-danger">Delete</a>
 						</div>
 				</div>
 		</c:forEach>
