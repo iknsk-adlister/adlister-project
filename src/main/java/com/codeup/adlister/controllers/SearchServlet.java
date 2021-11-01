@@ -25,7 +25,14 @@ public class SearchServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("ads", DaoFactory.getAdsDao().findByTitle(request.getParameter("searchBar")));
+
+        if (request.getParameter("ads-btn") != null) {
+            request.setAttribute("ads", DaoFactory.getAdsDao().findByTitle(request.getParameter("search-ads")));
+        } else if (request.getParameter("users-btn") != null) {
+            request.setAttribute("ads", DaoFactory.getAdsDao().findAdByUsername(request.getParameter("search-users")));
+        } else if (request.getParameter("categories-btn") != null) {
+            request.setAttribute("ads", DaoFactory.getAdsDao().findAdByCategory(request.getParameter("search-categories")));
+        }
 
         request.getRequestDispatcher("/WEB-INF/search.jsp").forward(request, response);
     }

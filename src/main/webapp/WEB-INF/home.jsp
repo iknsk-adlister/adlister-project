@@ -22,20 +22,23 @@
 	<form method="post" action="/home">
 	<label for="category-search">Search for a category here:</label>
 	<input id="category-search" type="text" name="category-search">
-		<button type="submit" class="btn btn-primary">Submit</button>
+		<button name="category-btn" type="submit" class="btn btn-primary">Submit</button>
 	</form>
 
 	<div class="container">
-		<h1>Here Are all the ads!</h1>
+		<h1>Here are all the ads!</h1>
 			<div class="row">
 		<c:forEach var="ad" items="${ads}">
 					<div class="col-4 d-flex flex-row card" style="width: 18rem;">
-<%--						<img class="card-img-top" src="..." alt="Card image cap">--%>
 						<div class="card-body">
 							<h5 class="card-title">${ad.title}</h5>
 							<p class="card-text">${ad.description}</p>
 							<a href="#" class="btn btn-primary" style="background-color: blueviolet">Message Seller</a>
-							<a href="#" class="btn btn-primary" style="background-color: blueviolet">Edit</a>
+							<a href="${pageContext.request.contextPath}/ads/editads?id=${ad.id}" class="btn btn-primary" style="background-color: blueviolet">Edit</a>
+							<a  href="/details?adId=${ad.id}" class="btn btn-primary" style="background-color: blueviolet">Details</a>
+							<a href="${pageContext.request.contextPath}/ads/delete?id=${ad.id}"
+							   onclick="return confirm('Are you sure you want to delete this ad?')"
+							   class="btn">Delete</a>
 						</div>
 				</div>
 		</c:forEach>

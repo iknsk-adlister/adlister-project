@@ -101,6 +101,14 @@ public class MySQLAdsDao implements Ads {
 
 
     public void delete(long id) {
+        String deleteCategoryQuery = "DELETE FROM ad_category WHERE ad_id = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(deleteCategoryQuery);
+            stmt.setLong(1, id);
+            stmt.execute();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error finding ad with that Category", e);
+        }
         String insertQuery = "DELETE FROM ads WHERE id = ?";
         try {
             PreparedStatement stmt = connection.prepareStatement(insertQuery);
@@ -113,15 +121,102 @@ public class MySQLAdsDao implements Ads {
     }
 
     @Override
+    public Ad findById(long id) {
+        try {
+            String query = "SELECT * FROM ads WHERE id = ? LIMIT 1";
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, String.valueOf(id));
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return extractAd(rs);
+            }
+            return null;
+        } catch (SQLException e) {
+            throw new RuntimeException("Error finding a Ad by Id", e);
+        }
+    }
+
+    @Override
+    public void edit(Ad ad) {
+        String query = "update ads set title = ?, description = ? where id = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, ad.getTitle());
+            stmt.setString(2, ad.getDescription());
+            stmt.setLong(3, ad.getId());
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error updating ad", e);
+        }
+    }
+
+    @Override
     public List<Ad> findAdByCategory(String category){
-    	String searchQuery = "SELECT * FROM ads JOIN ad_category ac ON ads.id = ac.ad_id JOIN categories c ON c.id = ac.category_id WHERE c.name = ?";
+    	String searchQuery = "SELECT * FROM ads JOIN ad_category ac ON ads.id = ac.ad_id JOIN categories c ON c.id = ac.category_id WHERE c.name LIKE ?";
+        String wildCard = "%" + category + "%";
     	try{
     		PreparedStatement stmt = connection.prepareStatement(searchQuery);
-    		stmt.setString(1, category);
+    		stmt.setString(1, wildCard);
 		    ResultSet rs = stmt.executeQuery();
 		    return createAdsFromResults(rs);
 	    } catch (SQLException throwables) {
 		    throw new RuntimeException("Error searching by category.", throwables);
 	    }
+    }
+
+    @Override
+    public List<Ad> getByUserId(Long id) {
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement("SELECT * FROM ads where user_id = ?");
+            stmt.setLong(1, id);
+            ResultSet rs = stmt.executeQuery();
+            return createAdsFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving all ads.", e);
+        }
+    }
+
+    @Override
+    public Long findUserId(long id) {
+        try {
+            String query = "SELECT user_id FROM ads WHERE id = ? LIMIT 1";
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, String.valueOf(id));
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getLong("user_id");
+            }
+            return null;
+        } catch (SQLException e) {
+            throw new RuntimeException("Error finding a Ad by Id", e);
+        }
+    }
+
+
+    public List<Ad> findAdByUsername(String username) {
+        String query = "SELECT * FROM ads JOIN users u on u.id = ads.user_id WHERE username = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, username);
+            ResultSet rs = (stmt.executeQuery());
+            return createAdsFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error finding a user by username", e);
+        }
+    }
+
+    public Ad findAdById(long id) {
+        String selectQuery = "SELECT * FROM ads WHERE id = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(selectQuery);
+            stmt.setLong(1, id);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            return extractAd(rs);
+        } catch (SQLException throwables) {
+            throw new RuntimeException("Error finding ad by ID.", throwables);
+        }
     }
 }
