@@ -9,7 +9,7 @@
 
     if(user != null) {
      request.setAttribute("navbar", "<a href=\"/welcome\">Home</a>"+
-             "<li><a href=\"/profile\">Home</a></li>"+
+             "<li><a href=\"/profile\">Profile</a></li>"+
              "<li><a href=\"/ads/homeSearch\">Search</a></li>"+
              "<li><a href=\"/ads/create\">Create Ads</a></li>"+
              "<li><a href=\"/logout\">Logout\"</a></li>");
