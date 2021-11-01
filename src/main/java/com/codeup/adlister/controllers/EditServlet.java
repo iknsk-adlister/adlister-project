@@ -43,7 +43,7 @@ public class EditServlet extends HttpServlet {
             return;
         }
         if (description == null || description.isEmpty()) {
-            response.sendRedirect("/ads/editads?ad_id=" + id + "&errorMessage=TitleNull");
+            response.sendRedirect("/ads/editads?ad_id=" + id + "&errorMessage=DescriptionNull");
             return;
         }
 

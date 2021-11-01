@@ -5,9 +5,10 @@ import com.mysql.cj.jdbc.Driver;
 
 
 import java.sql.*;
+import java.util.regex.Pattern;
 
 public class MySQLUsersDao implements Users {
-    private Connection connection;
+    private final Connection connection;
 
     public MySQLUsersDao(Config config) {
         try {
@@ -65,18 +66,6 @@ public class MySQLUsersDao implements Users {
         }
     }
 
-//    @Override
-//    public User findById(long id) {
-//        String query = "SELECT * FROM users WHERE id = ? LIMIT 1";
-//        try {
-//            PreparedStatement stmt = connection.prepareStatement(query);
-//            stmt.setString(1, String.valueOf(id));
-//            return extractUser(stmt.executeQuery());
-//        } catch (SQLException e) {
-//            throw new RuntimeException("Error finding a user by id", e);
-//        }
-//    }
-
     private User extractUser(ResultSet rs) throws SQLException {
         if (! rs.next()) {
             return null;
@@ -87,6 +76,73 @@ public class MySQLUsersDao implements Users {
             rs.getString("email"),
             rs.getString("password")
         );
+    }
+
+    public void update (User user) {
+        String query = "update users set username = ?, email = ? where id = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, user.getUsername());
+            stmt.setString(2, user.getEmail());
+            stmt.setLong(3, user.getId());
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error updating user", e);
+        }
+    }
+
+    public Boolean emailInputIsValid(String email) { //BR
+        String regex ="^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+(?:\\."
+                + "[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$";
+        Pattern pattern = Pattern.compile(regex);
+        if (email == null) {
+            return false;
+        }
+        return pattern.matcher(email).matches();
+    }
+
+    public Boolean emailDuplicates(User user) {
+
+        if (findByEmail(user.getEmail()) != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    //function to check database if username already exits
+    public Boolean check(User user) {
+        if (findByUsername(user.getUsername()) != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        String query = "SELECT * FROM users WHERE email = ? LIMIT 1";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, email);
+            return extractUser(stmt.executeQuery());
+        } catch (SQLException e) {
+            throw new RuntimeException("Email is already in use", e);
+        }
+    }
+
+    public void updatePassword(String password, long id) {
+        String query = "update users set password = ? where id = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, password);
+            stmt.setLong(2, id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error updating user", e);
+        }
     }
 
 }
