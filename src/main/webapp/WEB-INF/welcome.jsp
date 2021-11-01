@@ -19,9 +19,9 @@
     </div>
     <div class="card" style="width: 20rem; height: 20rem;">
         <div class="card-body">
-            <h5 class="card-title">Categories</h5>
-            <p class="card-text">Go to our home page. Here you can see all of our categories:</p>
-            <a href="/home" class="btn btn-primary">Categories</a>
+            <h5 class="card-title">Home</h5>
+            <p class="card-text">Go to our home page. Here you can see all of our ads and/or categories:</p>
+            <a href="/home" class="btn btn-primary">Home</a>
         </div>
     </div>
 </div>
@@ -37,12 +37,15 @@
         <div class="card-body">
             <h5 class="card-title">Search</h5>
             <div class="form-group">
-            <input type="text" class="form-control input-lg mt-4 mb-3" placeholder="Search for an Ad, User, or Category" name="searchBar">
+                <form action="/welcome" method="POST">
+                    <input type="text" class="form-control input-lg mt-4 mb-3" placeholder="Search for an Ad" name="homeInput">
+                    <br>
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
             </div>
-            <br>
-            <a href="#" class="btn btn-primary">Search</a>
         </div>
     </div>
+</div>
 </div>
 </body>
 </html>

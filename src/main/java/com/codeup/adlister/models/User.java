@@ -29,6 +29,11 @@ public class User {
         this.negativeRating = 0;
     }
 
+     public User(String username, String email) {
+         this.username = username;
+         this.email = email;
+     }
+
     public long getPositiveRating() {
         return positiveRating;
     }
