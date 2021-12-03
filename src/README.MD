@@ -9,6 +9,6 @@
         <form action="/ads/create" method="post">
 ```
 3. Servlet file has tag with **urlPatterns = "/ads/create"**
-```java
+```javaq
     @WebServlet(name = "controllers.CreateAdServlet", urlPatterns = "/ads/create")
 ```
